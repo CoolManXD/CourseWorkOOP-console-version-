@@ -1,7 +1,17 @@
-﻿  car.cpp
-  driver.cpp
-  main.cpp
-  map.cpp
-  taxiPark.cpp
-  Generating Code...
+﻿  driverMap.cpp
+E:\VS\OOPlabs\CourseWork(consoleVersion)\CourseWork(consoleVersion)\driverMap.cpp(8,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+E:\VS\OOPlabs\CourseWork(consoleVersion)\CourseWork(consoleVersion)\driverMap.cpp(9,20): warning C4018: '<': signed/unsigned mismatch
+E:\VS\OOPlabs\CourseWork(consoleVersion)\CourseWork(consoleVersion)\driverMap.cpp(11,21): warning C4018: '<': signed/unsigned mismatch
+E:\VS\OOPlabs\CourseWork(consoleVersion)\CourseWork(consoleVersion)\driverMap.cpp(24,21): warning C4018: '<': signed/unsigned mismatch
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\utility(165,1): warning C4244: 'initializing': conversion from '_Ty' to '_Ty2', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\utility(165,1): warning C4244:         with
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\utility(165,1): warning C4244:         [
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\utility(165,1): warning C4244:             _Ty=int
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\utility(165,1): warning C4244:         ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\utility(165,1): warning C4244:         and
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\utility(165,1): warning C4244:         [
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\utility(165,1): warning C4244:             _Ty2=float
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\utility(165,1): warning C4244:         ]
+E:\VS\OOPlabs\CourseWork(consoleVersion)\CourseWork(consoleVersion)\driverMap.cpp(26): message : see reference to function template instantiation 'std::pair<int,float>::pair<int,int,0>(std::pair<int,int> &&) noexcept' being compiled
+E:\VS\OOPlabs\CourseWork(consoleVersion)\CourseWork(consoleVersion)\driverMap.cpp(26): message : see reference to function template instantiation 'std::pair<int,float>::pair<int,int,0>(std::pair<int,int> &&) noexcept' being compiled
   CourseWork(consoleVersion).vcxproj -> E:\VS\OOPlabs\CourseWork(consoleVersion)\Debug\CourseWork(consoleVersion).exe

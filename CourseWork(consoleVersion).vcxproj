@@ -124,16 +124,27 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="car.cpp" />
-    <ClCompile Include="driver.cpp" />
+    <ClCompile Include="driverDependent.cpp" />
+    <ClCompile Include="driverIndependent.cpp" />
+    <ClCompile Include="driverMap.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map.cpp" />
     <ClCompile Include="taxiPark.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="car.h" />
-    <ClInclude Include="driver.h" />
+    <ClInclude Include="driverDependent.h" />
+    <ClInclude Include="driverIndependent.h" />
+    <ClInclude Include="driverMap.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="taxiPark.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="dataBase\carsDependent.txt" />
+    <Text Include="dataBase\carsIndependent.txt" />
+    <Text Include="dataBase\driversDependent.txt" />
+    <Text Include="dataBase\driversIndependent.txt" />
+    <Text Include="dataBase\map.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,15 +1,19 @@
 #include <iostream>
 #include "map.h"
+#include "driverMap.h"
 #include "taxiPark.h"
 
 int main()
 {
 	Map map;
+	DriverMap driverMap(map);
 	TaxiPark park;
-	park.getItem(0).getInfoDriver();
+	park.getDependent(0).getInfoDriver();
+	park.getIndependent(0).getInfoDriver();
+	int i;
+	std::cin >> i;
 	
-
-	Driver driver1("Serhii", 5, Car("Bentley", "YY999YY", 150));
+	DriverDependent driver1("Serhii", 5, Car("Bentley", "YY999YY", 150));
 	driver1.getInfoDriver();
 
 	Car car1;

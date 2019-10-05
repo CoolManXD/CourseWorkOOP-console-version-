@@ -21,21 +21,24 @@
     <ClCompile Include="car.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="driver.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
     <ClCompile Include="map.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
     <ClCompile Include="taxiPark.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="driverDependent.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="driverIndependent.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="driverMap.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="car.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="driver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="map.h">
@@ -44,5 +47,31 @@
     <ClInclude Include="taxiPark.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="driverDependent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="driverIndependent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="driverMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="dataBase\carsDependent.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="dataBase\carsIndependent.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="dataBase\driversDependent.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="dataBase\driversIndependent.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="dataBase\map.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

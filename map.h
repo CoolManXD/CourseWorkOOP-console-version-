@@ -2,6 +2,8 @@
 #include <vector>
 #include <string>
 
+class DriverMap;
+
 class Map {
 private:
 	int quantityStreet;
@@ -13,4 +15,5 @@ public:
 	{
 		loadMap();
 	}
+	friend class DriverMap;
 };

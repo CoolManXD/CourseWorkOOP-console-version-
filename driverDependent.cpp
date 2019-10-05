@@ -1,7 +1,7 @@
-#include "driver.h"
+#include "driverDependent.h"
 #include <iostream>
 
-void Driver::getInfoDriver()
+void DriverDependent::getInfoDriver()
 {
 	std::cout << "Name: " << m_name << "\nYear experience: " << m_yearExp << "\n";
 	m_car.getAttributesCar();
