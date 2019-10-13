@@ -79,5 +79,8 @@
     <Text Include="dataBase\map.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="dataBase\listOfStreets.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

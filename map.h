@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <map>
 #include <string>
 //#include "driverMap.h"
 //#include "client.h"
@@ -9,7 +10,8 @@ class Client;
 class Map {
 private:
 	int quantityStreet;
-	std::vector<std::vector<std::pair<std::string, float>>> mapOfTown;
+	std::map<std::string, int> listOfStreets;
+	std::vector<std::vector<std::pair<int, float>>> mapOfTown;
 	const int INF{ 1000000000 };
 	void loadMap();
 public:

@@ -146,6 +146,7 @@
     <Text Include="dataBase\carsIndependent.txt" />
     <Text Include="dataBase\driversDependent.txt" />
     <Text Include="dataBase\driversIndependent.txt" />
+    <Text Include="dataBase\listOfStreets.txt" />
     <Text Include="dataBase\map.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

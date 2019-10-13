@@ -5,10 +5,11 @@
 #include "client.h"
 int main()
 {
-	Client client;
+	
 	Map map;
 	DriverMap driverMap{ map };
 	TaxiPark park;
+	Client client{ map };
 	park.getDependent(0).getInfoDriver();
 	park.getIndependent(0).getInfoDriver();
 	park.getDependent(2).getInfoDriver();

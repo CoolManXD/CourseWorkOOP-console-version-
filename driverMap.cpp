@@ -10,7 +10,7 @@ DriverMap::DriverMap(const Map& map) : m_map(map)
 	{
 		for (int j = 0; j < m_map.mapOfTown[i].size(); j++)
 		{
-			m_trafficJams[i].push_back(std::make_pair((m_map.mapOfTown[i][j].first)[0] - 49, 0));
+			m_trafficJams[i].push_back(std::make_pair(m_map.mapOfTown[i][j].first, 0));
 		}
 	}
 	updateDataTrafficJams();

@@ -3,10 +3,13 @@
 #include "driverDependent.h"
 #include "driverIndependent.h"
 
+class Client;
+
 class TaxiPark {
 private:
 	std::vector<DriverDependent> driversDependent;
 	std::vector<DriverIndependent> driversIndependent;
+	Client* m_client{ NULL };
 	void loadData();
 public:
 
