@@ -9,7 +9,11 @@ int main()
 	Map map;
 	DriverMap driverMap{ map };
 	TaxiPark park;
-	Client client{ map };
+	Client *client = new Client{ map };
+	std::cout << client->getDesination();
+	park.receiveOrder(client);
+	park.completeOrder();
+	std::cout << client->getDesination();
 	park.getDependent(0).getInfoDriver();
 	park.getIndependent(0).getInfoDriver();
 	park.getDependent(2).getInfoDriver();

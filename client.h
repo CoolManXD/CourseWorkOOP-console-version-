@@ -15,4 +15,5 @@ public:
 	Client(const Map& map, std::string name, std::string location, std::string destination);
 	std::string getLocation();
 	std::string getDesination();
+	~Client(){}
 };

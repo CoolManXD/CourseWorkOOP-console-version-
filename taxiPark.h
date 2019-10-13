@@ -12,18 +12,13 @@ private:
 	Client* m_client{ NULL };
 	void loadData();
 public:
-
 	TaxiPark() {
 		loadData();
 	}
-	~TaxiPark() {}
-	/*~TaxiPark() {
-		for (int i = 0; i < drivers.size; i++)
-		{
-			delete drivers[i];
-		}
-	}*/
+	void receiveOrder(Client*);
+	void completeOrder();
 	DriverDependent getDependent(int index);
 	DriverIndependent getIndependent(int index);
 	/*Driver* operator[] (const int index);*/
+	~TaxiPark() {}
 };

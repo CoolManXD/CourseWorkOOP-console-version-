@@ -36,6 +36,16 @@ void TaxiPark::loadData() {
 	}
 }
 
+void TaxiPark::receiveOrder(Client* client)
+{
+	m_client = client;
+}
+
+void TaxiPark::completeOrder()
+{
+	delete m_client;
+}
+
 DriverDependent TaxiPark::getDependent(int index)
 { 
 	return driversDependent[index];
