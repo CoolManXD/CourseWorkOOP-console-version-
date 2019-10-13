@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="car.cpp" />
+    <ClCompile Include="client.cpp" />
     <ClCompile Include="driverDependent.cpp" />
     <ClCompile Include="driverIndependent.cpp" />
     <ClCompile Include="driverMap.cpp" />
@@ -133,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="car.h" />
+    <ClInclude Include="client.h" />
     <ClInclude Include="driverDependent.h" />
     <ClInclude Include="driverIndependent.h" />
     <ClInclude Include="driverMap.h" />

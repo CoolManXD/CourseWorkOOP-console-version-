@@ -1,12 +1,16 @@
 #pragma once
-#include "map.h"
+
+#include <vector>
+
+class Map;
 
 class DriverMap
 {
 private:
-	int quantityStreet;
-	std::vector<std::vector<std::pair<int, float>>> trafficJams;
+	/*int quantityStreet;*/
+	const Map& m_map;
+	std::vector<std::vector<std::pair<int, float>>> m_trafficJams;
 	void updateDataTrafficJams();
 public:
-	DriverMap(Map& map);
+	DriverMap(const Map& map);
 };

@@ -13,5 +13,7 @@ public:
 	{
 	}
 	void getInfoDriver();
+	std::string getName();
+	int getYearExp();
 	~DriverIndependent() {}
 }; 

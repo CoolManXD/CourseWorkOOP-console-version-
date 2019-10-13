@@ -4,19 +4,21 @@
 void TaxiPark::loadData() {
 	std::ifstream fsCar("dataBase\\carsDependent.txt");
 	std::ifstream fsDriver("dataBase\\driversDependent.txt");
+	std::string name;
+	int yearExp;
+	std::string model;
+	std::string regPlate;
+	char symbol;
+	bool isInsured;
 	while (!fsCar.eof())
 	{
-		std::string name;
-		int yearExp;
-		std::string model;
-		std::string regPlate;
-		int speed;
 		fsDriver >> name;
 		fsDriver >> yearExp;
 		fsCar >> model;
 		fsCar >> regPlate;
-		fsCar >> speed;
-		driversDependent.push_back(DriverDependent(name, yearExp, Car(model, regPlate, speed)));
+		fsCar >> symbol;
+		isInsured = (symbol == '+') ? true : false;
+		driversDependent.push_back(DriverDependent(name, yearExp, Car(model, regPlate, isInsured)));
 	}
 	fsCar.close();
 	fsDriver.close();
@@ -24,17 +26,13 @@ void TaxiPark::loadData() {
 	fsDriver.open("dataBase\\driversIndependent.txt");
 	while (!fsCar.eof())
 	{
-		std::string name;
-		int yearExp;
-		std::string model;
-		std::string regPlate;
-		int speed;
 		fsDriver >> name;
 		fsDriver >> yearExp;
 		fsCar >> model;
 		fsCar >> regPlate;
-		fsCar >> speed;
-		driversIndependent.push_back(DriverIndependent(name, yearExp, Car(model, regPlate, speed)));
+		fsCar >> symbol;
+		isInsured = (symbol == '+') ? true : false;
+		driversIndependent.push_back(DriverIndependent(name, yearExp, Car(model, regPlate, isInsured)));
 	}
 }
 
