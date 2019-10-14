@@ -15,7 +15,8 @@ public:
 	{
 	}
 	void getInfoDriver();
-	std::string getName();
+	const std::string& getName();
 	int getYearExp();
+	Car& getCar();
 	~DriverDependent() {}
 };

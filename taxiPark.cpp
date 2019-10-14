@@ -1,5 +1,6 @@
 #include "taxiPark.h"
 #include <fstream>
+#include <iostream>
 
 void TaxiPark::loadData() {
 	std::ifstream fsCar("dataBase\\carsDependent.txt");
@@ -34,6 +35,35 @@ void TaxiPark::loadData() {
 		isInsured = (symbol == '+') ? true : false;
 		driversIndependent.push_back(DriverIndependent(name, yearExp, Car(model, regPlate, isInsured)));
 	}
+}
+
+bool TaxiPark::checkLoadData()
+{
+	bool OK{ true };
+	for (auto it = driversDependent.begin(); it != driversDependent.end(); ++it)
+	{
+		if (it->getName() == "")
+		{
+			std::cout << "Mistake in name\n";
+			OK = false;
+		}
+		if (it->getYearExp() < 0 || it->getYearExp() > 200)
+		{
+			std::cout << "Mistake in year of experience\n";
+			OK = false;
+		}
+		if (it->getCar().getModel() == "")
+		{
+			std::cout << "mistake in name of model\n";
+			OK = false;
+		}
+		if (it->getCar().getRegPlate() == "")
+		{
+			std::cout << "mistake in registation plate\n";
+			OK = false;
+		}
+	}
+	return OK;
 }
 
 void TaxiPark::receiveOrder(Client* client)

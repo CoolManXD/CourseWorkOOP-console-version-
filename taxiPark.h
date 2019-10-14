@@ -15,6 +15,7 @@ public:
 	TaxiPark() {
 		loadData();
 	}
+	bool checkLoadData();
 	void receiveOrder(Client*);
 	void completeOrder();
 	DriverDependent getDependent(int index);

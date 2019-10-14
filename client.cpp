@@ -38,11 +38,11 @@ Client::Client(const Map& map, std::string name, std::string location, std::stri
 {
 
 }
-std::string Client::getLocation()
+const std::string& Client::getLocation()
 {
 	return m_location;
 }
-std::string Client::getDesination()
+const std::string& Client::getDesination()
 {
 	return m_destination;
 }

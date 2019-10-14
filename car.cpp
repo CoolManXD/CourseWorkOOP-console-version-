@@ -12,11 +12,11 @@ void Car::getAttributesCar()
 	std::cout << "Model: " << m_model << "\nRegistation plate: " << m_regPlate << "\nInsured: " << (m_isInsured == true ? "true" : "false") << "\n\n";
 }
 
-std::string Car::getModel()
+const std::string& Car::getModel()
 {
 	return m_model;
 }
-std::string Car::getRegPlate()
+const std::string& Car::getRegPlate()
 {
 	return m_regPlate;
 }

@@ -1,6 +1,9 @@
 #pragma once
 #include <string>
 
+class driverDependent;
+class driverIndependent;
+
 class Car {
 private:
 	std::string m_model;
@@ -18,9 +21,8 @@ public:
 	
 	void setAttributesCar(std::string model, std::string regPlate, bool isInsured);
 	void getAttributesCar();
-	std::string getModel();
-	std::string getRegPlate();
+	const std::string& getModel();
+	const std::string& getRegPlate();
 	bool isInsured();
-
 	~Car() {}
 };

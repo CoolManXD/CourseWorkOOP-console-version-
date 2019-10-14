@@ -9,12 +9,13 @@ int main()
 	Map map;
 	DriverMap driverMap{ map };
 	TaxiPark park;
+	park.checkLoadData();
 	Client *client = new Client{ map };
 	std::cout << client->getDesination();
 	park.receiveOrder(client);
 	park.completeOrder();
-	std::cout << client->getDesination();
-	park.getDependent(0).getInfoDriver();
+
+	/*park.getDependent(0).getInfoDriver();
 	park.getIndependent(0).getInfoDriver();
 	park.getDependent(2).getInfoDriver();
 
@@ -33,7 +34,7 @@ int main()
 	car3.getAttributesCar();
 	std::cout << "Car3 (changed)" << std::endl;
 	car3.setAttributesCar("Audi", "BB111BB", false);
-	car3.getAttributesCar();
+	car3.getAttributesCar();*/
 
 	system("pause");
 	return 0;
