@@ -18,8 +18,17 @@ public:
 	bool checkLoadData();
 	void receiveOrder(Client*);
 	void completeOrder();
-	DriverDependent getDependent(int index);
-	DriverIndependent getIndependent(int index);
+	 DriverDependent getDependent(int index);
+	 DriverIndependent getIndependent(int index);
 	/*Driver* operator[] (const int index);*/
 	~TaxiPark() {}
 };
+
+inline DriverDependent TaxiPark::getDependent(int index)
+{
+	return driversDependent[index];
+}
+inline DriverIndependent TaxiPark::getIndependent(int index)
+{
+	return driversIndependent[index];
+}

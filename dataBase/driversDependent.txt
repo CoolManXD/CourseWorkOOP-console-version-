@@ -3,8 +3,3 @@ Roma 5
 Vitaliy 10
 Alexey 9
 Anatoliy 129
-Vova 10
-Nikita 3
-Kiril 8
-Nazar 3
-Oleg 15

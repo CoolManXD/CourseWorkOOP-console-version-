@@ -2,21 +2,51 @@
 #include "car.h"
 #include <iostream>
 
-void DriverIndependent::getInfoDriver()
+Driver& DriverIndependent::getDriver()
 {
-	std::cout << "Name: " << m_name << "\nYear experience: " << m_yearExp << "\n";
-	m_car.getAttributesCar();
-} 
-const std::string& DriverIndependent::getName()
-{
-	return m_name;
+	return m_driver;
 }
-int DriverIndependent::getYearExp()
-{
-	return m_yearExp;
 
-}
-Car& DriverIndependent::getCar()
+void DriverIndependent::setSalary(float salary)
 {
-	return m_car;
+	m_salary = salary;
+}
+
+float DriverIndependent::getSalary()
+{
+	return m_salary;
+}
+
+bool DriverIndependent::isInsured()
+{
+	return m_isCompanyInsured;
+}
+bool DriverIndependent::isRepairServ()
+{
+	return m_isCompanyRepairServ;
+}
+bool DriverIndependent::isFuel()
+{
+	return m_isCompanyFuel;
+}
+
+
+float DriverIndependent::getPercentageOfOrder()
+{
+	return m_percentageOfOrder;
+}
+
+float DriverIndependent::getPercentageOfInsured()
+{
+	return m_percentageOfInsured;
+}
+
+float DriverIndependent::getPercentageOfRepairServ()
+{
+	return m_percentageOfRepairServ;
+}
+
+float DriverIndependent::getPercentageOfFuel()
+{
+	return m_percentageOfFuel;
 }

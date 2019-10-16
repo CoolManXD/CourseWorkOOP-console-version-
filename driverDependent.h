@@ -1,22 +1,20 @@
 #pragma once
 #include <string>
-#include "car.h"
+#include "driver.h"
 
 class DriverDependent {
 private:
-	std::string m_name;
-	int m_yearExp;
-	Car m_car;
-	bool m_isBusy{ false };
-	float m_busyTime{ 0 };
+	Driver m_driver;
+	float m_salary {0};
+	static constexpr float m_percentageOfOrder = 0.25f;
 public:
-	DriverDependent(std::string name = "undefined", int yearExp = 0, const Car &car = Car("undefined", "undefined", 0))
-		: m_name(name), m_yearExp(yearExp), m_car(car)
+	DriverDependent(const Driver &driver = Driver("undefined", 0, Car("undefined", "undefined", 0)))
+		: m_driver(driver)
 	{
 	}
-	void getInfoDriver();
-	const std::string& getName();
-	int getYearExp();
-	Car& getCar();
+	Driver& getDriver();
+	void setSalary(float);
+	float getSalary();
+	static float getPercentageOfOrder();
 	~DriverDependent() {}
 };
