@@ -2,6 +2,7 @@
 #include "car.h"
 #include <iostream>
 
+//-------------------Функции доступа-------------------- 
 Driver& DriverIndependent::getDriver()
 {
 	return m_driver;
@@ -30,7 +31,7 @@ bool DriverIndependent::isFuel()
 	return m_isCompanyFuel;
 }
 
-
+//-------------------Геттеры статический полей-------------------- 
 float DriverIndependent::getPercentageOfOrder()
 {
 	return m_percentageOfOrder;
@@ -49,4 +50,57 @@ float DriverIndependent::getPercentageOfRepairServ()
 float DriverIndependent::getPercentageOfFuel()
 {
 	return m_percentageOfFuel;
+}
+
+//-------------------Перегрузки операторов-------------------- 
+
+std::ostream& operator<< (std::ostream& out, DriverIndependent& driver)
+{
+	out << driver.getDriver();
+	out << "Salary: " << driver.getSalary() << "\n";
+	if (driver.isInsured()) out << "Use company insurance: +\n";
+	else out << "Use company insurance: -\n";
+	if (driver.isRepairServ()) out << "Use company repair service: +\n";
+	else out << "Use company repair service: -\n";
+	if (driver.isFuel()) out << "Use company fuel: +\n";
+	else out << "Use company fuel: -\n";
+	return out;
+}
+
+std::istream& operator>> (std::istream& in, DriverIndependent& driver)
+{
+	in >> driver.getDriver();
+	std::cout << "Salary: ";
+	in >> driver.m_salary;
+	std::cout << "Use company insurance(+/-): ";
+	char choosen;
+	std::cin >> choosen;
+	if (choosen == '+') driver.m_isCompanyInsured = true;
+	else driver.m_isCompanyInsured = false;
+	std::cout << "Use company repair service(+/-): ";
+
+	std::cin >> choosen;
+	if (choosen == '+') driver.m_isCompanyRepairServ = true;
+	else driver.m_isCompanyRepairServ = false;
+	std::cout << "Use company fuel(+/-): ";
+
+	std::cin >> choosen;
+	if (choosen == '+') driver.m_isCompanyFuel = true;
+	else driver.m_isCompanyFuel = false;
+	return in;
+}
+
+float operator+(float money, DriverIndependent& driver)
+{
+	return money + driver.getSalary();
+}
+
+float operator+(DriverIndependent& driver, float money)
+{
+	return money + driver.getSalary();
+}
+
+float operator+=(float money, DriverIndependent& driver)
+{
+	return money + driver.getSalary();
 }

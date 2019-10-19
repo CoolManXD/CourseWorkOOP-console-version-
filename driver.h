@@ -14,10 +14,12 @@ public:
 		: m_name(name), m_yearExp(yearExp), m_car(car)
 	{
 	}
-	void getInfoDriver();
 	const std::string& getName();
 	int getYearExp();
 	Car& getCar();
 	bool isBusy();
 	~Driver() {}
+	friend std::istream& operator>> (std::istream&, Driver&);
 };
+
+std::ostream& operator<< (std::ostream&, Driver&);

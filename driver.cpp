@@ -2,11 +2,7 @@
 #include "car.h"
 #include <iostream>
 
-void Driver::getInfoDriver()
-{
-	std::cout << "Name: " << m_name << "\nYear experience: " << m_yearExp << "\n";
-	m_car.getAttributesCar();
-}
+//-------------------Функции доступа-------------------- 
 const std::string& Driver::getName()
 {
 	return m_name;
@@ -24,4 +20,21 @@ Car& Driver::getCar()
 bool Driver::isBusy()
 {
 	return m_isBusy;
+}
+
+//-------------------Перегрузка операторов-------------------- 
+std::ostream& operator<< (std::ostream& out, Driver& driver)
+{
+	out << "Name: " << driver.getName() << "\nYear experience: " << driver.getYearExp() << "\n" << driver.getCar();
+	return out;
+}
+
+std::istream& operator>> (std::istream& in, Driver& driver)
+{
+	std::cout << "Name: ";
+	in >> driver.m_name;
+	std::cout << "Year experience: ";
+	in >> driver.m_yearExp;
+	in >> driver.getCar();
+	return in;
 }

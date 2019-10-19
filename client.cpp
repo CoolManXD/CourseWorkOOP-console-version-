@@ -2,6 +2,7 @@
 #include "map.h"
 #include <iostream>
 
+//-------------------Конструктор оформления клиента-------------------- 
 Client::Client(const Map& map) : m_map{ map }
 {
 	std::cout << "Fill profile\n";
@@ -38,6 +39,8 @@ Client::Client(const Map& map, std::string name, std::string location, std::stri
 {
 
 }
+
+//-------------------Функции доступа-------------------- 
 const std::string& Client::getLocation()
 {
 	return m_location;

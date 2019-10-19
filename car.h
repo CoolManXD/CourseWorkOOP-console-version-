@@ -20,9 +20,11 @@ public:
 	}
 	
 	void setAttributesCar(std::string model, std::string regPlate, bool isInsured);
-	void getAttributesCar();
 	const std::string& getModel();
 	const std::string& getRegPlate();
 	bool isVip();
 	~Car() {}
+	friend std::istream& operator>> (std::istream&, Car&);
 };
+
+std::ostream& operator<< (std::ostream&, Car&);

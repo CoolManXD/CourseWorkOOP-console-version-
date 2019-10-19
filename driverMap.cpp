@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 
+//-------------------Конструктор создание карты водителя-------------------- 
 DriverMap::DriverMap(const Map& map) : m_map(map)
 {
 	m_trafficJams.resize(m_map.quantityStreet);
@@ -16,6 +17,7 @@ DriverMap::DriverMap(const Map& map) : m_map(map)
 	updateDataTrafficJams();
 }
 
+//-------------------Обновление данных о пробках-------------------- 
 void DriverMap::updateDataTrafficJams() {
 	srand(time(NULL));
 	for (int i = 0; i < m_trafficJams.size(); i++)

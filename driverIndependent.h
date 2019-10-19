@@ -29,4 +29,10 @@ public:
 	static float getPercentageOfRepairServ();
 	static float getPercentageOfFuel();
 	~DriverIndependent() {}
+	friend std::istream& operator>> (std::istream& in, DriverIndependent&);
 };
+
+std::ostream& operator<< (std::ostream&, DriverIndependent&);
+float operator+(float money, DriverIndependent& driver);
+float operator+(DriverIndependent& driver, float money);
+float operator+=(float money, DriverIndependent& driver);

@@ -1,2 +1,11 @@
-﻿  main.cpp
+﻿  car.cpp
+  client.cpp
+  driver.cpp
+  driverDependent.cpp
+  driverIndependent.cpp
+  main.cpp
+  taxiPark.cpp
+E:\VS\OOPlabs\CourseWork(consoleVersion)\CourseWork(consoleVersion)\taxiPark.cpp(116,17): warning C4150: deletion of pointer to incomplete type 'Client'; no destructor called
+  Generating Code...
+E:\VS\OOPlabs\CourseWork(consoleVersion)\CourseWork(consoleVersion)\taxiPark.h(6): message : see declaration of 'Client'
   CourseWork(consoleVersion).vcxproj -> E:\VS\OOPlabs\CourseWork(consoleVersion)\Debug\CourseWork(consoleVersion).exe

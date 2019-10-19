@@ -9,7 +9,12 @@ int main()
 	Map map;
 	DriverMap driverMap{ map };
 	TaxiPark park;
-	std::cout << park.getIndependent(0).getDriver().getName();
+	park.addDependentDriver();
+	park.addIndependentDriver();
+	std::cout << park;
+	std::cout << std::endl;
+	park.paySalaries();
+	std::cout << park.getIndependent(0).getDriver().getName() << std::endl;
 	park.checkLoadData();
 	/*Client *client = new Client{ map };*/
 	/*std::cout << client->getDesination();*/

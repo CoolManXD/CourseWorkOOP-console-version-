@@ -10,6 +10,7 @@ private:
 	std::vector<DriverDependent> driversDependent;
 	std::vector<DriverIndependent> driversIndependent;
 	Client* m_client{ NULL };
+	float m_earnMoney{ 10000 };
 	void loadData();
 public:
 	TaxiPark() {
@@ -18,17 +19,18 @@ public:
 	bool checkLoadData();
 	void receiveOrder(Client*);
 	void completeOrder();
-	 DriverDependent getDependent(int index);
-	 DriverIndependent getIndependent(int index);
-	/*Driver* operator[] (const int index);*/
+
+	DriverDependent& getDependent(const int index);
+	DriverIndependent& getIndependent(const int index);
+
+	void paySalaries();
+
+	void addDependentDriver();
+
+	void addIndependentDriver();
+	friend std::ostream& operator<< (std::ostream&, TaxiPark&);
 	~TaxiPark() {}
 };
 
-inline DriverDependent TaxiPark::getDependent(int index)
-{
-	return driversDependent[index];
-}
-inline DriverIndependent TaxiPark::getIndependent(int index)
-{
-	return driversIndependent[index];
-}
+
+

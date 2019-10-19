@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 
+//-------------------Загрузка карты(графа) с файла-------------------- 
 void Map::loadMap()
 {
 	std::ifstream fs("dataBase\\listOfStreets.txt");

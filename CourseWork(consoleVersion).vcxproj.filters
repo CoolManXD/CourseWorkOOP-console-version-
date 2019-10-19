@@ -39,6 +39,9 @@
     <ClCompile Include="client.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="driver.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="car.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="client.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="driver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

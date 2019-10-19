@@ -2,6 +2,8 @@
 #include <fstream>
 #include <iostream>
 
+//-------------------Загрузка данных с файла и проверка-------------------- 
+
 void TaxiPark::loadData() {
 	std::ifstream fsCar("dataBase\\carsDependent.txt");
 	std::ifstream fsDriver("dataBase\\driversDependent.txt");
@@ -13,11 +15,12 @@ void TaxiPark::loadData() {
 	bool isVip;
 	while (!fsCar.eof())
 	{
-		fsDriver >> name;
-		fsDriver >> yearExp;
 		fsCar >> model;
+		if (fsCar.eof()) break;
 		fsCar >> regPlate;
 		fsCar >> symbol;
+		fsDriver >> name;
+		fsDriver >> yearExp;
 		isVip = (symbol == '+') ? true : false;
 		driversDependent.push_back(DriverDependent(Driver(name, yearExp, Car(model, regPlate, isVip))));
 	}
@@ -33,14 +36,15 @@ void TaxiPark::loadData() {
 	char symbol3;
 	while (!fsCar.eof())
 	{
+		fsCar >> model;
+		if (fsCar.eof()) break;
+		fsCar >> regPlate;
+		fsCar >> symbol;
 		fsDriver >> name;
 		fsDriver >> yearExp;
 		fsDriver >> symbol1;
 		fsDriver >> symbol2;
 		fsDriver >> symbol3;
-		fsCar >> model;
-		fsCar >> regPlate;
-		fsCar >> symbol;
 		isVip = (symbol == '+') ? true : false;
 		isInsured = (symbol1 == '+') ? true : false;
 		isRepairServ = (symbol2 == '+') ? true : false;
@@ -101,6 +105,7 @@ bool TaxiPark::checkLoadData()
 	return OK;
 }
 
+//----------------Получение и выполнение заказа------------------
 void TaxiPark::receiveOrder(Client* client)
 {
 	m_client = client;
@@ -111,16 +116,64 @@ void TaxiPark::completeOrder()
 	delete m_client;
 }
 
-// DriverDependent TaxiPark::getDependent(int index)
-//{
-//	return driversDependent[index];
-//}
-// DriverIndependent TaxiPark::getIndependent(int index)
-//{
-//	return driversIndependent[index];
-//}
+//----------------Получение конкретного водителя------------------
+DriverDependent& TaxiPark::getDependent(const int index)
+{
+	return driversDependent[index];
+}
+DriverIndependent& TaxiPark::getIndependent(const int index)
+{
+	return driversIndependent[index];
+}
 
-//Driver* TaxiPark::operator[] (const int index)
-//{
-//	return drivers[index];
-//}
+//----------------Выплата зарплаты------------------
+void TaxiPark::paySalaries()
+{
+	float totalSalary{ 0 };
+	for (auto it = driversDependent.begin(); it != driversDependent.end(); ++it)
+	{
+		totalSalary = totalSalary + (*it);
+		it->setSalary(0);
+	}
+	for (auto it = driversIndependent.begin(); it != driversIndependent.end(); ++it)
+	{
+		totalSalary = totalSalary + (*it);
+		it->setSalary(0);
+	}
+	m_earnMoney -= totalSalary;
+}
+
+//-------------------Добавление в базу новых водителей-------------------- 
+void TaxiPark::addDependentDriver()
+{
+	std::cout << "\nFill profile (dependent driver) \n\n";
+	DriverDependent driver;
+	std::cin >> driver;
+	driversDependent.push_back(driver);
+}
+
+void TaxiPark::addIndependentDriver()
+{
+	std::cout << "Fill profile (independent driver) \n\n";
+	DriverIndependent driver;
+	std::cin >> driver;
+	driversIndependent.push_back(driver);
+}
+
+//-------------------Перегрузки операторов-------------------- 
+std::ostream& operator<< (std::ostream& out, TaxiPark& park)
+{
+	int i = 1;
+	out << "Dependent drivers\n";
+	for (auto it = park.driversDependent.begin(); it != park.driversDependent.end(); ++it)
+	{
+		out << "\n" << i++ << ")\n" << *it;
+	}
+	i = 1;
+	out << "\nIndependent drivers\n";
+	for (auto it = park.driversIndependent.begin(); it != park.driversIndependent.end(); ++it)
+	{
+		out << "\n" << i++ << ")\n" << *it;
+	}
+	return out;
+}
