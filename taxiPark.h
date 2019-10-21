@@ -26,8 +26,10 @@ public:
 	void paySalaries();
 
 	void addDependentDriver();
-
 	void addIndependentDriver();
+
+	void setDriverMap(DriverMap*);
+
 	friend std::ostream& operator<< (std::ostream&, TaxiPark&);
 	~TaxiPark() {}
 };

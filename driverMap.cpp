@@ -4,7 +4,7 @@
 #include <ctime>
 
 //-------------------Конструктор создание карты водителя-------------------- 
-DriverMap::DriverMap(const Map& map) : m_map(map)
+DriverMap::DriverMap(Map& map) : m_map(map)
 {
 	m_trafficJams.resize(m_map.quantityStreet);
 	for (int i = 0; i < m_map.quantityStreet; i++)
@@ -25,6 +25,7 @@ void DriverMap::updateDataTrafficJams() {
 		for (int j = 0; j < m_trafficJams[i].size(); j++)
 		{
 			m_trafficJams[i][j].second = (float(rand() % 5 + 1) / 2)*m_map.mapOfTown[i][j].second;
+			/*m_trafficJams[i][j].second = m_map.mapOfTown[i][j].second;*/
 		}
 	}
 }

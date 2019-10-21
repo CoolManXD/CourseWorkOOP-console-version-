@@ -14,18 +14,13 @@ Client::Client(const Map& map) : m_map{ map }
 	{
 		std::cout << it->first << std::endl;
 	}
+	std::cout << std::endl << "Fill your location\n";
 	do
 	{
 		std::cout << "Location: ";
 		std::getline(std::cin, m_location);
 	} while (m_map.listOfStreets.find(m_location) == m_map.listOfStreets.end());
-
-
-	std::cout << std::endl << "List of streets\n";
-	for (auto it = m_map.listOfStreets.begin(); it != m_map.listOfStreets.end(); ++it)
-	{
-		std::cout << it->first << std::endl;
-	}
+	std::cout << std::endl << "Fill your destination\n";
 	do
 	{
 		std::cout << "Destination: ";
@@ -45,7 +40,7 @@ const std::string& Client::getLocation()
 {
 	return m_location;
 }
-const std::string& Client::getDesination()
+const std::string& Client::getDestination()
 {
 	return m_destination;
 }

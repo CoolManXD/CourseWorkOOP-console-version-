@@ -3,11 +3,6 @@
 #include <iostream>
 
 //-------------------Функции доступа-------------------- 
-Driver& DriverDependent::getDriver()
-{
-	return m_driver;
-}
-
 void DriverDependent::setSalary(float salary)
 {
 	m_salary = salary;
@@ -27,14 +22,14 @@ float DriverDependent::getPercentageOfOrder()
 //-------------------Перегрузка операторов-------------------- 
 std::ostream& operator<< (std::ostream& out, DriverDependent& driver)
 {
-	out << driver.getDriver();
+	out << "Name: " << driver.getName() << "\nYear experience: " << driver.getYearExp() << "\n" << driver.getCar();
 	out << "Salary: " << driver.getSalary() << "\n";
 	return out;
 }
 
 std::istream& operator>> (std::istream& in, DriverDependent& driver)
 {
-	in >> driver.getDriver();
+	in >> dynamic_cast<Driver&>(driver);
 	std::cout << "Salary: ";
 	in >> driver.m_salary;
 	return in;

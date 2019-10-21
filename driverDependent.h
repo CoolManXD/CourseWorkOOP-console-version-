@@ -2,17 +2,15 @@
 #include <string>
 #include "driver.h"
 
-class DriverDependent {
+class DriverDependent : public Driver {
 private:
-	Driver m_driver;
-	float m_salary {10};
+	float m_salary{ 10 };
 	static constexpr float m_percentageOfOrder = 0.25f;
 public:
-	DriverDependent(const Driver &driver = Driver("undefined", 0, Car("undefined", "undefined", 0)))
-		: m_driver(driver)
+	DriverDependent(std::string name = "undefined", int yearExp = 0, const Car& car = Car("undefined", "undefined", false))
+		: Driver{ name, yearExp, car }
 	{
 	}
-	Driver& getDriver();
 	void setSalary(float);
 	float getSalary();
 	static float getPercentageOfOrder();

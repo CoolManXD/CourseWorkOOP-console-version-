@@ -3,11 +3,6 @@
 #include <iostream>
 
 //-------------------Функции доступа-------------------- 
-Driver& DriverIndependent::getDriver()
-{
-	return m_driver;
-}
-
 void DriverIndependent::setSalary(float salary)
 {
 	m_salary = salary;
@@ -56,7 +51,7 @@ float DriverIndependent::getPercentageOfFuel()
 
 std::ostream& operator<< (std::ostream& out, DriverIndependent& driver)
 {
-	out << driver.getDriver();
+	out << "Name: " << driver.getName() << "\nYear experience: " << driver.getYearExp() << "\n" << driver.getCar();
 	out << "Salary: " << driver.getSalary() << "\n";
 	if (driver.isInsured()) out << "Use company insurance: +\n";
 	else out << "Use company insurance: -\n";
@@ -69,7 +64,7 @@ std::ostream& operator<< (std::ostream& out, DriverIndependent& driver)
 
 std::istream& operator>> (std::istream& in, DriverIndependent& driver)
 {
-	in >> driver.getDriver();
+	in >> dynamic_cast<Driver&>(driver);
 	std::cout << "Salary: ";
 	in >> driver.m_salary;
 	std::cout << "Use company insurance(+/-): ";

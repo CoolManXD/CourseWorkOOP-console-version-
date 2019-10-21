@@ -10,7 +10,7 @@ private:
 	std::string m_regPlate;
 	bool m_isVip;
 public:
-	Car(std::string model = "undefined", std::string regPlate = "undefined", bool isVip = 0)
+	Car(std::string model = "undefined", std::string regPlate = "undefined", bool isVip = false)
 		: m_model{ model }, m_regPlate{ regPlate }, m_isVip{ isVip }
 	{
 	}

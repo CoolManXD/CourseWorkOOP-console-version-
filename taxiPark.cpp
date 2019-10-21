@@ -1,4 +1,5 @@
 #include "taxiPark.h"
+#include "client.h"
 #include <fstream>
 #include <iostream>
 
@@ -22,7 +23,7 @@ void TaxiPark::loadData() {
 		fsDriver >> name;
 		fsDriver >> yearExp;
 		isVip = (symbol == '+') ? true : false;
-		driversDependent.push_back(DriverDependent(Driver(name, yearExp, Car(model, regPlate, isVip))));
+		driversDependent.push_back(DriverDependent(name, yearExp, Car(model, regPlate, isVip)));
 	}
 	fsCar.close();
 	fsDriver.close();
@@ -49,7 +50,7 @@ void TaxiPark::loadData() {
 		isInsured = (symbol1 == '+') ? true : false;
 		isRepairServ = (symbol2 == '+') ? true : false;
 		isFuel = (symbol3 == '+') ? true : false;
-		driversIndependent.push_back(DriverIndependent(isInsured, isRepairServ, isFuel, Driver(name, yearExp, Car(model, regPlate, isVip))));
+		driversIndependent.push_back(DriverIndependent(isInsured, isRepairServ, isFuel, name, yearExp, Car(model, regPlate, isVip)));
 	}
 }
 
@@ -58,22 +59,22 @@ bool TaxiPark::checkLoadData()
 	bool OK{ true };
 	for (auto it = driversDependent.begin(); it != driversDependent.end(); ++it)
 	{
-		if (it->getDriver().getName() == "")
+		if (it->getName() == "")
 		{
 			std::cout << "Mistake in name\n";
 			OK = false;
 		}
-		if (it->getDriver().getYearExp() < 0 || it->getDriver().getYearExp() > 200)
+		if (it->getYearExp() < 0 || it->getYearExp() > 200)
 		{
 			std::cout << "Mistake in year of experience\n";
 			OK = false;
 		}
-		if (it->getDriver().getCar().getModel() == "")
+		if (it->getCar().getModel() == "")
 		{
 			std::cout << "mistake in name of model\n";
 			OK = false;
 		}
-		if (it->getDriver().getCar().getRegPlate() == "")
+		if (it->getCar().getRegPlate() == "")
 		{
 			std::cout << "mistake in registation plate\n";
 			OK = false;
@@ -81,28 +82,33 @@ bool TaxiPark::checkLoadData()
 	}
 	for (auto it = driversIndependent.begin(); it != driversIndependent.end(); ++it)
 	{
-		if (it->getDriver().getName() == "")
+		if (it->getName() == "")
 		{
 			std::cout << "Mistake in name\n";
 			OK = false;
 		}
-		if (it->getDriver().getYearExp() < 0 || it->getDriver().getYearExp() > 200)
+		if (it->getYearExp() < 0 || it->getYearExp() > 200)
 		{
 			std::cout << "Mistake in year of experience\n";
 			OK = false;
 		}
-		if (it->getDriver().getCar().getModel() == "")
+		if (it->getCar().getModel() == "")
 		{
 			std::cout << "mistake in name of model\n";
 			OK = false;
 		}
-		if (it->getDriver().getCar().getRegPlate() == "")
+		if (it->getCar().getRegPlate() == "")
 		{
 			std::cout << "mistake in registation plate\n";
 			OK = false;
 		}
 	}
 	return OK;
+}
+
+void TaxiPark::setDriverMap(DriverMap* map)
+{
+	driversDependent[0].setDriverMap(map);
 }
 
 //----------------Получение и выполнение заказа------------------
@@ -113,7 +119,42 @@ void TaxiPark::receiveOrder(Client* client)
 
 void TaxiPark::completeOrder()
 {
+	Driver* driver = NULL;
+	for (auto it = driversDependent.begin(); it != driversDependent.end(); ++it)
+	{
+		if (!(it->isBusy()))
+		{
+			driver = &(*it);
+			it->changeIsBusy();
+			break;
+		}
+	}
+	if (driver == NULL)
+	{
+		for (auto it = driversIndependent.begin(); it != driversIndependent.end(); ++it)
+		{
+			if (!(it->isBusy()))
+			{
+				driver = &(*it);
+				it->changeIsBusy();
+				break;
+			}
+		}
+	}
+	if (driver == NULL)
+	{
+		std::cout << "Sorry. No free cars :(\n";
+		delete m_client;
+		m_client = NULL;
+		return;
+	}
+	/*DriverDependent* driver2 = dynamic_cast<DriverDependent*>(driver);*/
+	float way = driver->findWay(driver->getLocation(), m_client->getLocation());
+	way += driver->findWay(m_client->getLocation(), m_client->getDestination());
+	std::cout << "All trip will take " << way << " minutes\n";
+	driver->setLocation(m_client->getDestination());
 	delete m_client;
+	m_client = NULL;
 }
 
 //----------------Получение конкретного водителя------------------

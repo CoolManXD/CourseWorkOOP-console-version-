@@ -2,9 +2,8 @@
 #include <string>
 #include "driver.h"
 
-class DriverIndependent {
+class DriverIndependent: public Driver {
 private:
-	Driver m_driver;
 	float m_salary{ 0 };
 	bool m_isCompanyInsured;
 	bool m_isCompanyRepairServ;
@@ -14,11 +13,11 @@ private:
 	static constexpr float m_percentageOfRepairServ = 0.1f;
 	static constexpr float m_percentageOfFuel = 0.05f;
 public:
-	DriverIndependent(bool isCompanyInsured = false, bool isCompanyRepairServ = false, bool isCompanyFuel = false, const Driver& driver = Driver("undefined", 0, Car("undefined", "undefined", 0)))
-		: m_isCompanyInsured{ isCompanyInsured }, m_isCompanyRepairServ{ isCompanyRepairServ }, m_isCompanyFuel{ isCompanyFuel }, m_driver{ driver }
+	
+	DriverIndependent(bool isCompanyInsured = false, bool isCompanyRepairServ = false, bool isCompanyFuel = false, std::string name = "undefined", int yearExp = 0, const Car& car = Car("undefined", "undefined", false))
+		: m_isCompanyInsured{ isCompanyInsured }, m_isCompanyRepairServ{ isCompanyRepairServ }, m_isCompanyFuel{ isCompanyFuel }, Driver{ name, yearExp, car }
 	{
 	}
-	Driver& getDriver();
 	void setSalary(float);
 	float getSalary();
 	bool isInsured();
