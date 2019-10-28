@@ -142,6 +142,7 @@
     <ClInclude Include="driverMap.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="taxiPark.h" />
+    <ClInclude Include="taxiService.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="dataBase\carsDependent.txt" />

@@ -28,6 +28,16 @@ void Driver::changeIsBusy() {
 	m_isBusy = !m_isBusy;
 }
 
+double Driver::getBusyTime()
+{
+	return m_busyTime;
+}
+
+std::chrono::steady_clock::time_point& Driver::getStartTime()
+{
+	return m_startTime;
+}
+
 const std::string& Driver::getLocation()
 {
 	return m_location;
@@ -94,8 +104,15 @@ float Driver::findWay(const std::string& from, const std::string& destination)
 				break;
 			}
 	}
-	std::cout << std::endl;
+	/*std::cout << std::endl;*/
+
 	return d[m_driverMap->m_map.listOfStreets[destination]];
+}
+
+void Driver::setTimeAttributes(double time)
+{
+	m_busyTime = time;
+	m_startTime = std::chrono::steady_clock::now();
 }
 
 //-------------------Перегрузка операторов-------------------- 

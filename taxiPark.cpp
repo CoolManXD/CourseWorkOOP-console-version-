@@ -112,50 +112,143 @@ void TaxiPark::setDriverMap(DriverMap* map)
 }
 
 //----------------Получение и выполнение заказа------------------
+
 void TaxiPark::receiveOrder(Client* client)
 {
 	m_client = client;
 }
 
-void TaxiPark::completeOrder()
+TaxiService* TaxiPark::findNearestDriver(double& duration)
 {
-	Driver* driver = NULL;
+	TaxiService* driver = NULL;
+	double anotherDuration;
 	for (auto it = driversDependent.begin(); it != driversDependent.end(); ++it)
 	{
 		if (!(it->isBusy()))
 		{
-			driver = &(*it);
-			it->changeIsBusy();
-			break;
-		}
-	}
-	if (driver == NULL)
-	{
-		for (auto it = driversIndependent.begin(); it != driversIndependent.end(); ++it)
-		{
-			if (!(it->isBusy()))
+			anotherDuration = it->findWay(it->getLocation(), m_client->getLocation());
+			std::cout << "will take " << anotherDuration << " minutes (" << it->getName() << ")\n";
+			if (duration > anotherDuration)
 			{
+				duration = anotherDuration;
 				driver = &(*it);
-				it->changeIsBusy();
-				break;
 			}
 		}
 	}
+
+	for (auto it = driversIndependent.begin(); it != driversIndependent.end(); ++it)
+	{
+		if (!(it->isBusy()))
+		{
+			anotherDuration = it->findWay(it->getLocation(), m_client->getLocation());
+			std::cout << "will take " << anotherDuration << " minutes (" << it->getName() << ")\n";
+			if (duration > anotherDuration)
+			{
+				duration = anotherDuration;
+				driver = &(*it);
+			}
+		}
+	}
+
 	if (driver == NULL)
 	{
 		std::cout << "Sorry. No free cars :(\n";
 		delete m_client;
 		m_client = NULL;
-		return;
+		return NULL;
 	}
+
+	driver->changeIsBusy();
+	return driver;
+}
+
+void TaxiPark::completeOrder()
+{
+	busyDriverUpdates();
+	double durationToClient = 999999;
+	TaxiService* driver = findNearestDriver(durationToClient);
+	if (driver == NULL) return;
 	/*DriverDependent* driver2 = dynamic_cast<DriverDependent*>(driver);*/
-	float way = driver->findWay(driver->getLocation(), m_client->getLocation());
-	way += driver->findWay(m_client->getLocation(), m_client->getDestination());
-	std::cout << "All trip will take " << way << " minutes\n";
+
+	double durationToDesination = driver->findWay(m_client->getLocation(), m_client->getDestination());
+	driver->setTimeAttributes(durationToClient + durationToDesination);
+	std::cout << "All trip will take " << durationToClient + durationToDesination << " minutes\n";
+	driver->calculatePrice(durationToDesination);
 	driver->setLocation(m_client->getDestination());
 	delete m_client;
 	m_client = NULL;
 }
+
+void TaxiPark::busyDriverUpdates()
+{
+	std::chrono::steady_clock::time_point endTime = std::chrono::steady_clock::now();
+	for (auto it = driversDependent.begin(); it != driversDependent.end(); ++it)
+	{
+		if (it->isBusy())
+		{
+			if (std::chrono::duration_cast<std::chrono::seconds>(endTime - it->getStartTime()).count() >= it->getBusyTime())
+			{
+				it->changeIsBusy();
+			}
+		}
+	}
+
+	for (auto it = driversIndependent.begin(); it != driversIndependent.end(); ++it)
+	{
+		if (it->isBusy())
+		{
+
+			if (std::chrono::duration_cast<std::chrono::seconds>(endTime - it->getStartTime()).count() >= it->getBusyTime())
+			{
+				it->changeIsBusy();
+			}
+		}
+	}
+}
+
+
+void TaxiPark::showListBusyDriver()
+{
+	busyDriverUpdates();
+	std::cout << "List of busy drivers:" << std::endl;
+	for (auto it = driversDependent.begin(); it != driversDependent.end(); ++it)
+	{
+		if (it->isBusy())
+		{
+			std::cout << it->getName() << std::endl;
+		}
+	}
+
+	for (auto it = driversIndependent.begin(); it != driversIndependent.end(); ++it)
+	{
+		if (it->isBusy())
+		{
+			std::cout << it->getName() << std::endl;
+		}
+	}
+}
+
+void TaxiPark::showListNoBusyDriver()
+{
+	busyDriverUpdates();
+	std::cout << "List of no busy drivers:" << std::endl;
+	for (auto it = driversDependent.begin(); it != driversDependent.end(); ++it)
+	{
+		if (!(it->isBusy()))
+		{
+			std::cout << it->getName() << std::endl;
+		}
+	}
+
+	for (auto it = driversIndependent.begin(); it != driversIndependent.end(); ++it)
+	{
+		if (!(it->isBusy()))
+		{
+			std::cout << it->getName() << std::endl;
+		}
+	}
+}
+
 
 //----------------Получение конкретного водителя------------------
 DriverDependent& TaxiPark::getDependent(const int index)
@@ -166,6 +259,7 @@ DriverIndependent& TaxiPark::getIndependent(const int index)
 {
 	return driversIndependent[index];
 }
+
 
 //----------------Выплата зарплаты------------------
 void TaxiPark::paySalaries()
@@ -182,6 +276,8 @@ void TaxiPark::paySalaries()
 		it->setSalary(0);
 	}
 	m_earnMoney -= totalSalary;
+	std::cout << "Net profit: " << m_earnMoney << std::endl;
+	std::cout << "Driver received in total: " << totalSalary << std::endl;
 }
 
 //-------------------Добавление в базу новых водителей-------------------- 

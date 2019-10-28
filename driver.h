@@ -1,16 +1,20 @@
 #pragma once
 #include <string>
+#include <chrono>
+#include "taxiService.h"
 #include "car.h"
+
 
 class DriverMap;
 
-class Driver {
+class Driver: public TaxiService {
 private:
 	std::string m_name;
 	int m_yearExp;
 	Car m_car;
 	bool m_isBusy{ false };
-	float m_busyTime{ 0 };
+	double m_busyTime{ 0 };
+	std::chrono::steady_clock::time_point m_startTime;
 	std::string m_location{ "1street" };
 	static DriverMap* m_driverMap;
 public:
@@ -23,15 +27,22 @@ public:
 	int getYearExp();
 	Car& getCar();
 	bool isBusy();
-	void changeIsBusy();
-	const std::string& getLocation();
-	void setLocation(const std::string&);
-
-	float findWay(const std::string& from, const std::string& to);
+	double getBusyTime();
+	std::chrono::steady_clock::time_point& getStartTime();
 
 	static void setDriverMap(DriverMap*);
 	static DriverMap* getDriverMap();
-	~Driver() {}
+
+	virtual void changeIsBusy() override final;
+	virtual void setTimeAttributes(double) override final;
+	virtual const std::string& getLocation() override final;
+	virtual void setLocation(const std::string&) override final;
+
+	virtual float findWay(const std::string&, const std::string&) override final;
+
+	virtual void calculatePrice(double) override {};
+	virtual ~Driver() {}
+
 	friend std::istream& operator>> (std::istream&, Driver&);
 };
 

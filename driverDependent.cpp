@@ -19,6 +19,15 @@ float DriverDependent::getPercentageOfOrder()
 	return m_percentageOfOrder;
 }
 
+
+//--------------------Подсчет стоимости---------------------
+void DriverDependent::calculatePrice(double distance)
+{
+	std::cout << "Taxi park earns " << distance << "$" << std::endl;
+	float salary = distance * m_percentageOfOrder;
+	std::cout << "Driver will get " << salary << "$" << std::endl;
+	m_salary += salary;
+}
 //-------------------Перегрузка операторов-------------------- 
 std::ostream& operator<< (std::ostream& out, DriverDependent& driver)
 {

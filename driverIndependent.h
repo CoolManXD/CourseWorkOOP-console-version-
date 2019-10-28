@@ -27,7 +27,8 @@ public:
 	static float getPercentageOfInsured();
 	static float getPercentageOfRepairServ();
 	static float getPercentageOfFuel();
-	~DriverIndependent() {}
+	virtual void calculatePrice(double) override final;
+	virtual ~DriverIndependent() {}
 	friend std::istream& operator>> (std::istream& in, DriverIndependent&);
 };
 

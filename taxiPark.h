@@ -17,9 +17,14 @@ public:
 		loadData();
 	}
 	bool checkLoadData();
+
 	void receiveOrder(Client*);
 	void completeOrder();
+	TaxiService* findNearestDriver(double&);
+	void busyDriverUpdates();
 
+	void showListBusyDriver();
+	void showListNoBusyDriver();
 	DriverDependent& getDependent(const int index);
 	DriverIndependent& getIndependent(const int index);
 

@@ -14,7 +14,8 @@ public:
 	void setSalary(float);
 	float getSalary();
 	static float getPercentageOfOrder();
-	~DriverDependent() {}
+	virtual void calculatePrice(double) override final;
+	virtual ~DriverDependent() {}
 	friend std::istream& operator>> (std::istream& in, DriverDependent&);
 };
 

@@ -4,15 +4,15 @@
 #include "taxiPark.h"
 #include "client.h"
 #include <conio.h>
+#include <chrono>
 
 int main()
 {
-
 	Map map;
 	/*DriverMap driverMap{ map };*/
 	TaxiPark park;
 	park.setDriverMap(new DriverMap{ map });
-	
+
 	int chosen; 
 	bool BOOL = true; 
 	while (BOOL)
@@ -23,6 +23,9 @@ int main()
 		std::cout << "1 - Make order" << std::endl;
 		std::cout << "2 - Apply for a job" << std::endl;
 		std::cout << "3 - Show drivers' profiles" << std::endl;
+		std::cout << "4 - Pay salaries" << std::endl;
+		std::cout << "5 - Show list of busy drivers" << std::endl;
+		std::cout << "6 - Show list of no busy drivers" << std::endl;
 		std::cout << "0 - exit" << std::endl;
 		std::cout << "Chosen: ";
 		std::cin >> chosen;
@@ -52,6 +55,27 @@ int main()
 		case 3:
 		{
 			std::cout << park;
+			std::cout << "Press any key\n";
+			_getch();
+			break;
+		}
+		case 4:
+		{
+			park.paySalaries();
+			std::cout << "Press any key\n";
+			_getch();
+			break;
+		}
+		case 5:
+		{
+			park.showListBusyDriver();
+			std::cout << "Press any key\n";
+			_getch();
+			break;
+		}
+		case 6:
+		{
+			park.showListNoBusyDriver();
 			std::cout << "Press any key\n";
 			_getch();
 			break;
